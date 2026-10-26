@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="ru" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="URBAN THREADS — джинсы и базовая нижняя одежда. Плотный деним, мягкий хлопок, доставка по России.">
+    <meta name="theme-color" content="#111827">
+    <title>URBAN THREADS — Джинсы и нижняя одежда</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { brand: { 50: '#f9fafb', 100: '#f3f4f6', 900: '#111827', accent: '#2563eb' } },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+        .tab-content { animation: fadeIn 0.35s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .placeholder-card { background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 50%, #d1d5db 100%); }
+        .dark .placeholder-card { background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #374151 100%); }
+        .skeleton { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .focus-ring:focus { outline: none; box-shadow: 0 0 0 2px #000; }
+        .dark .focus-ring:focus { box-shadow: 0 0 0 2px #fff; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 min-h-screen flex flex-col justify-between selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-black focus:text-white focus:px-4 focus:py-2 focus:rounded">Перейти к содержимому</a>
+
+    <!-- TOP BAR -->
+    <div class="bg-black text-white dark:bg-gray-900 text-xs py-2 px-4 text-center tracking-widest uppercase font-medium">
+        БЕСПЛАТНАЯ ДОСТАВКА ОТ 5 000 ₽ | ПРОМОКОД <span class="text-blue-400 font-bold">URBAN10</span> ДАЁТ 10%
+    </div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white" aria-label="Открыть меню">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+
+                <a href="#/" onclick="switchTab('home'); return false;" class="flex-shrink-0">
+                    <span class="text-2xl font-black tracking-tighter uppercase dark:text-white">URBAN THREADS</span>
+                </a>
+
+                <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wide" aria-label="Основная навигация">
+                    <a href="#/" onclick="switchTab('home'); return false;" class="nav-link text-black dark:text-white border-b-2 border-black dark:border-white pb-1 transition-all" data-tab="home">ГЛАВНАЯ</a>
+                    <a href="#/catalog" onclick="switchTab('catalog'); return false;" class="nav-link text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white border-b-2 border-transparent pb-1 transition-all" data-tab="catalog">КАТАЛОГ</a>
+                    <a href="#/collections" onclick="switchTab('collections'); return false;" class="nav-link text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white border-b-2 border-transparent pb-1 transition-all" data-tab="collections">КОЛЛЕКЦИИ</a>
+                    <a href="#/about" onclick="switchTab('about'); return false;" class="nav-link text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white border-b-2 border-transparent pb-1 transition-all" data-tab="about">О НАС</a>
+                    <a href="#/contacts" onclick="switchTab('contacts'); return false;" class="nav-link text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white border-b-2 border-transparent pb-1 transition-all" data-tab="contacts">КОНТАКТЫ</a>
+                </nav>
+
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="relative hidden sm:block">
+                        <input type="search" id="search-input" onkeyup="handleSearch(event)" onfocus="showSearchSuggestions()" placeholder="Поиск товаров..." autocomplete="off" aria-label="Поиск" class="w-36 focus:w-56 transition-all duration-300 bg-gray-100 dark:bg-gray-800 text-xs rounded-full py-2 pl-9 pr-4 focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-gray-400"></i>
+                        <div id="search-suggestions" class="hidden absolute top-full mt-2 right-0 w-72 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-xl overflow-hidden z-50"></div>
+                    </div>
+
+                    <button id="theme-toggle" onclick="toggleTheme()" class="p-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white transition" aria-label="Сменить тему">
+                        <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+                        <i class="fa-solid fa-sun text-lg hidden dark:block text-yellow-400"></i>
+                    </button>
+
+                    <button id="account-btn" onclick="handleAccountClick()" class="relative p-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white transition" aria-label="Личный кабинет">
+                        <i id="account-icon" class="fa-regular fa-user text-lg"></i>
+                        <div id="account-avatar" class="hidden w-7 h-7 rounded-full bg-black text-white dark:bg-white dark:text-black items-center justify-center text-[11px] font-extrabold uppercase"></div>
+                    </button>
+
+                    <button onclick="toggleFavoritesModal()" class="relative p-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white transition" aria-label="Избранное">
+                        <i class="fa-regular fa-heart text-lg"></i>
+                        <span id="fav-count" class="absolute top-1 right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+
+                    <button onclick="toggleCartDrawer()" class="relative p-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white transition" aria-label="Корзина">
+                        <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        <span id="cart-count" class="absolute top-1 right-1 bg-black dark:bg-white dark:text-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 pt-2 pb-4 space-y-2">
+            <div class="mb-3 relative">
+                <input type="search" id="mobile-search-input" onkeyup="handleSearch(event)" placeholder="Поиск товаров..." class="w-full bg-gray-100 dark:bg-gray-800 text-xs rounded-full py-2 pl-9 pr-4 focus:outline-none">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-gray-400"></i>
+            </div>
+            <a href="#/" onclick="switchTab('home'); closeMobileMenu(); return false;" class="block w-full text-left py-2 text-sm font-medium">ГЛАВНАЯ</a>
+            <a href="#/catalog" onclick="switchTab('catalog'); closeMobileMenu(); return false;" class="block w-full text-left py-2 text-sm font-medium">КАТАЛОГ</a>
+            <a href="#/collections" onclick="switchTab('collections'); closeMobileMenu(); return false;" class="block w-full text-left py-2 text-sm font-medium">КОЛЛЕКЦИИ</a>
+            <a href="#/about" onclick="switchTab('about'); closeMobileMenu(); return false;" class="block w-full text-left py-2 text-sm font-medium">О НАС</a>
+            <a href="#/contacts" onclick="switchTab('contacts'); closeMobileMenu(); return false;" class="block w-full text-left py-2 text-sm font-medium">КОНТАКТЫ</a>
+            <button onclick="closeMobileMenu(); handleAccountClick()" class="block w-full text-left py-2 text-sm font-medium border-t border-gray-200 dark:border-gray-800 mt-2 pt-3">
+                <i class="fa-regular fa-user mr-2"></i> <span id="mobile-account-label">Личный кабинет</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main id="main-content" class="flex-grow">
+
+        <!-- HOME -->
+        <section id="tab-home" class="tab-content">
+            <div class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white h-[75vh] min-h-[500px] max-h-[820px] overflow-hidden flex items-center">
+                <div class="absolute inset-0 opacity-30" aria-hidden="true">
+                    <div class="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-blue-700/40 blur-3xl"></div>
+                    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-gray-500/30 blur-3xl"></div>
+                </div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left w-full">
+                    <span class="inline-block bg-white text-black text-xs font-bold uppercase tracking-widest px-3 py-1 mb-4">НОВАЯ КОЛЛЕКЦИЯ 2026</span>
+                    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight uppercase leading-none mb-6">ДЖИНСЫ &<br>НИЖНЯЯ ОДЕЖДА</h1>
+                    <p class="max-w-xl text-base sm:text-lg text-gray-200 mb-8 font-light">Капсульный гардероб: деним премиум-качества и комфортная базовая нижняя одежда на каждый день.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#/catalog" onclick="switchTab('catalog'); return false;" class="bg-white text-black hover:bg-gray-200 px-8 py-4 font-semibold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg hover:shadow-xl">СМОТРЕТЬ КАТАЛОГ</a>
+                        <a href="#/catalog?sort=newest" onclick="filterByCollection('new'); return false;" class="border border-white hover:bg-white hover:text-black px-8 py-4 font-semibold text-xs tracking-widest uppercase transition-all duration-300">НОВИНКИ СЕЗОНА</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h2 class="text-xs uppercase tracking-widest font-bold text-gray-400 mb-8">Категории каталога</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <a href="#/catalog?cat=Джинсы" onclick="filterByCategory('Джинсы'); return false;" class="group relative h-72 rounded-lg overflow-hidden cursor-pointer bg-gradient-to-br from-indigo-900 via-blue-800 to-gray-900 flex items-end p-6 focus-ring">
+                        <i class="fa-solid fa-user-tie absolute top-6 right-6 text-white/20 text-6xl" aria-hidden="true"></i>
+                        <div class="relative z-10">
+                            <span class="text-white text-2xl font-black uppercase tracking-wide block">Джинсы</span>
+                            <span class="text-blue-200 text-xs">Деним, прямые, slim, оверсайз</span>
+                        </div>
+                    </a>
+                    <a href="#/catalog?cat=Нижняя одежда" onclick="filterByCategory('Нижняя одежда'); return false;" class="group relative h-72 rounded-lg overflow-hidden cursor-pointer bg-gradient-to-br from-rose-900 via-pink-800 to-gray-900 flex items-end p-6 focus-ring">
+                        <i class="fa-solid fa-shirt absolute top-6 right-6 text-white/20 text-6xl" aria-hidden="true"></i>
+                        <div class="relative z-10">
+                            <span class="text-white text-2xl font-black uppercase tracking-wide block">Нижняя одежда</span>
+                            <span class="text-rose-200 text-xs">Базовые слои, комфорт, хлопок</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest font-bold text-gray-400">Популярное</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight uppercase dark:text-white">Хиты продаж</h2>
+                    </div>
+                    <a href="#/catalog" onclick="switchTab('catalog'); return false;" class="text-xs font-bold uppercase tracking-widest border-b border-black dark:border-white pb-1 hover:opacity-70 transition">Все товары &rarr;</a>
+                </div>
+                <div id="home-bestsellers-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+            </div>
+
+            <div class="border-t border-b border-gray-200 dark:border-gray-800 my-16 py-12 bg-gray-100/50 dark:bg-gray-900/50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="p-4"><i class="fa-solid fa-truck-fast text-2xl mb-4 text-gray-700 dark:text-gray-300"></i><h3 class="font-bold text-sm tracking-wide uppercase mb-2">Быстрая доставка</h3><p class="text-xs text-gray-500 dark:text-gray-400">Бесплатная курьерская доставка по России от 5 000 ₽.</p></div>
+                    <div class="p-4"><i class="fa-solid fa-shield-halved text-2xl mb-4 text-gray-700 dark:text-gray-300"></i><h3 class="font-bold text-sm tracking-wide uppercase mb-2">Гарантия качества</h3><p class="text-xs text-gray-500 dark:text-gray-400">Плотный деним и мягкий хлопок — только проверенные ткани.</p></div>
+                    <div class="p-4"><i class="fa-solid fa-rotate-left text-2xl mb-4 text-gray-700 dark:text-gray-300"></i><h3 class="font-bold text-sm tracking-wide uppercase mb-2">Удобный возврат</h3><p class="text-xs text-gray-500 dark:text-gray-400">Возврат или обмен в течение 14 дней с момента получения.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATALOG -->
+        <section id="tab-catalog" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <nav class="text-xs text-gray-500 mb-4" aria-label="Хлебные крошки">
+                <a href="#/" onclick="switchTab('home'); return false;" class="hover:underline">Главная</a> <span class="mx-1">/</span> <span class="text-black dark:text-white">Каталог</span>
+            </nav>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-4 border-b border-gray-200 dark:border-gray-800 gap-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold uppercase tracking-tight">Каталог товаров</h1>
+                    <p class="text-xs text-gray-500 mt-1">Показано <span id="catalog-count">0</span> товаров</p>
+                </div>
+                <div class="flex items-center space-x-4 w-full md:w-auto justify-between">
+                    <button onclick="toggleMobileFilters()" class="md:hidden flex items-center gap-2 border border-gray-300 dark:border-gray-700 px-4 py-2 rounded text-xs uppercase font-medium" aria-expanded="false" aria-controls="catalog-sidebar" id="mobile-filters-btn">
+                        <i class="fa-solid fa-sliders"></i> Фильтры
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <label for="sort-select" class="text-xs text-gray-500 whitespace-nowrap">Сортировка:</label>
+                        <select id="sort-select" onchange="applyFilters()" class="bg-gray-100 dark:bg-gray-800 text-xs rounded border-none py-2 px-3 focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white">
+                            <option value="popular">По популярности</option>
+                            <option value="price-asc">Сначала дешевле</option>
+                            <option value="price-desc">Сначала дороже</option>
+                            <option value="newest">Новинки</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <aside id="catalog-sidebar" class="hidden md:block space-y-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Фильтры</span>
+                        <button onclick="resetFilters()" class="text-xs text-red-500 hover:underline">Сбросить все</button>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-wider mb-3">Категории</h4>
+                        <div class="space-y-2 text-xs" id="category-filters">
+                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="Все" checked onchange="applyFilters()" class="rounded filter-category accent-black dark:accent-white"><span>Все категории</span></label>
+                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="Джинсы" onchange="applyFilters()" class="rounded filter-category accent-black dark:accent-white"><span>Джинсы</span></label>
+                            <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" value="Нижняя одежда" onchange="applyFilters()" class="rounded filter-category accent-black dark:accent-white"><span>Нижняя одежда</span></label>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 dark:border-gray-800 pt-6">
+                        <h4 class="text-sm font-bold uppercase tracking-wider mb-3">Максимальная цена</h4>
+                        <input type="range" id="price-range" min="500" max="15000" step="250" value="15000" oninput="updatePriceLabel(this.value)" onchange="applyFilters()" class="w-full accent-black dark:accent-white" aria-label="Максимальная цена">
+                        <div class="flex justify-between text-xs text-gray-500 mt-2"><span>500 ₽</span><span id="price-range-val" class="font-bold text-black dark:text-white">15 000 ₽</span></div>
+                    </div>
+                    <div class="border-t border-gray-200 dark:border-gray-800 pt-6">
+                        <h4 class="text-sm font-bold uppercase tracking-wider mb-3">Размер</h4>
+                        <div class="flex flex-wrap gap-2" id="size-filters">
+                            <button onclick="toggleSizeFilter(this, 'XS')" class="size-btn px-3 py-1 text-xs border border-gray-300 dark:border-gray-700 rounded hover:border-black dark:hover:border-white">XS</button>
+                            <button onclick="toggleSizeFilter(this, 'S')" class="size-btn px-3 py-1 text-xs border border-gray-300 dark:border-gray-700 rounded hover:border-black dark:hover:border-white">S</button>
+                            <button onclick="toggleSizeFilter(this, 'M')" class="size-btn px-3 py-1 text-xs border border-gray-300 dark:border-gray-700 rounded hover:border-black dark:hover:border-white">M</button>
+                            <button onclick="toggleSizeFilter(this, 'L')" class="size-btn px-3 py-1 text-xs border border-gray-300 dark:border-gray-700 rounded hover:border-black dark:hover:border-white">L</button>
+                            <button onclick="toggleSizeFilter(this, 'XL')" class="size-btn px-3 py-1 text-xs border border-gray-300 dark:border-gray-700 rounded hover:border-black dark:hover:border-white">XL</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="md:col-span-3">
+                    <div id="catalog-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                    <div id="catalog-empty" class="hidden text-center py-16">
+                        <i class="fa-solid fa-shirt text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500 text-sm">Товары по выбранным фильтрам не найдены.</p>
+                        <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-black text-white dark:bg-white dark:text-black text-xs uppercase tracking-widest rounded">Сбросить фильтры</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT PAGE -->
+        <section id="tab-product" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <nav class="text-xs text-gray-500 mb-4" aria-label="Хлебные крошки">
+                <a href="#/" onclick="switchTab('home'); return false;" class="hover:underline">Главная</a> <span class="mx-1">/</span>
+                <a href="#/catalog" onclick="switchTab('catalog'); return false;" class="hover:underline">Каталог</a> <span class="mx-1">/</span>
+                <span id="product-breadcrumb" class="text-black dark:text-white">Товар</span>
+            </nav>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="placeholder-card rounded-2xl aspect-[3/4] flex items-center justify-center text-white/30">
+                    <i class="fa-solid fa-shirt text-8xl"></i>
+                </div>
+                <div>
+                    <span id="product-category" class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Категория</span>
+                    <h1 id="product-title" class="text-3xl font-extrabold uppercase tracking-tight mt-1">Название</h1>
+                    <div class="text-2xl font-extrabold mt-3" id="product-price">0 ₽</div>
+                    <p id="product-desc" class="text-sm text-gray-500 dark:text-gray-400 mt-4 leading-relaxed">Описание</p>
+
+                    <div class="mt-6">
+                        <label class="text-xs font-bold uppercase tracking-wider block mb-2">Цвет</label>
+                        <div class="flex space-x-2" id="product-colors"></div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label class="text-xs font-bold uppercase tracking-wider block mb-2">Размер</label>
+                        <div class="flex flex-wrap gap-2" id="product-sizes"></div>
+                    </div>
+
+                    <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                        <button id="product-add-cart-btn" class="flex-grow bg-black text-white dark:bg-white dark:text-black py-4 text-xs font-bold uppercase tracking-widest hover:opacity-80 transition">Добавить в корзину</button>
+                        <button onclick="buyOneClick()" class="flex-grow border border-black dark:border-white py-4 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition">Купить в 1 клик</button>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-3 gap-3 text-center text-[10px] uppercase tracking-wider text-gray-500">
+                        <div><i class="fa-solid fa-truck-fast block text-lg mb-1"></i>Доставка 1–3 дня</div>
+                        <div><i class="fa-solid fa-rotate-left block text-lg mb-1"></i>Возврат 14 дней</div>
+                        <div><i class="fa-solid fa-shield-halved block text-lg mb-1"></i>Гарантия</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKOUT -->
+        <section id="tab-checkout" class="tab-content hidden max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <nav class="text-xs text-gray-500 mb-4" aria-label="Хлебные крошки">
+                <a href="#/" onclick="switchTab('home'); return false;" class="hover:underline">Главная</a> <span class="mx-1">/</span>
+                <a href="#/catalog" onclick="switchTab('catalog'); return false;" class="hover:underline">Каталог</a> <span class="mx-1">/</span>
+                <span class="text-black dark:text-white">Оформление заказа</span>
+            </nav>
+            <h1 class="text-3xl font-extrabold uppercase tracking-tight mb-8">Оформление заказа</h1>
+
+            <form id="checkout-form" onsubmit="submitCheckout(event)" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-2 space-y-6">
+                    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 space-y-3">
+                        <h2 class="text-sm font-bold uppercase tracking-wider mb-2">Контактные данные</h2>
+                        <input type="text" required placeholder="Имя и фамилия" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="name">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input type="email" required placeholder="Email" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="email">
+                            <input type="tel" required placeholder="Телефон" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="tel">
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 space-y-3">
+                        <h2 class="text-sm font-bold uppercase tracking-wider mb-2">Доставка</h2>
+                        <div class="space-y-2 text-xs">
+                            <label class="flex items-center justify-between border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 cursor-pointer">
+                                <span class="flex items-center gap-2"><input type="radio" name="delivery" value="courier" checked class="accent-black dark:accent-white"> Курьером</span>
+                                <span class="font-bold">от 300 ₽</span>
+                            </label>
+                            <label class="flex items-center justify-between border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 cursor-pointer">
+                                <span class="flex items-center gap-2"><input type="radio" name="delivery" value="pickup" class="accent-black dark:accent-white"> Самовывоз</span>
+                                <span class="font-bold">Бесплатно</span>
+                            </label>
+                        </div>
+                        <input type="text" required placeholder="Город" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none mt-2">
+                        <input type="text" required placeholder="Адрес / пункт выдачи" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none">
+                        <textarea rows="2" placeholder="Комментарий к заказу" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none"></textarea>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 space-y-3">
+                        <h2 class="text-sm font-bold uppercase tracking-wider mb-2">Оплата</h2>
+                        <div class="space-y-2 text-xs">
+                            <label class="flex items-center gap-2 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 cursor-pointer"><input type="radio" name="payment" value="card" checked class="accent-black dark:accent-white"> Банковская карта</label>
+                            <label class="flex items-center gap-2 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 cursor-pointer"><input type="radio" name="payment" value="sbp" class="accent-black dark:accent-white"> СБП</label>
+                            <label class="flex items-center gap-2 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 cursor-pointer"><input type="radio" name="payment" value="cash" class="accent-black dark:accent-white"> При получении</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 h-fit space-y-3">
+                    <h2 class="text-sm font-bold uppercase tracking-wider">Ваш заказ</h2>
+                    <div id="checkout-items" class="space-y-2 max-h-64 overflow-y-auto text-xs"></div>
+                    <div class="space-y-1 text-xs border-t border-gray-200 dark:border-gray-800 pt-3">
+                        <div class="flex justify-between text-gray-500"><span>Подытог:</span><span id="checkout-subtotal">0 ₽</span></div>
+                        <div class="flex justify-between text-gray-500"><span>Скидка:</span><span id="checkout-discount" class="text-green-600">0 ₽</span></div>
+                        <div class="flex justify-between text-gray-500"><span>Доставка:</span><span id="checkout-delivery">—</span></div>
+                        <div class="flex justify-between text-base font-extrabold text-black dark:text-white pt-2 border-t border-gray-200 dark:border-gray-800"><span>Итого:</span><span id="checkout-total">0 ₽</span></div>
+                    </div>
+                    <button type="submit" class="w-full bg-black text-white dark:bg-white dark:text-black py-4 text-xs font-bold uppercase tracking-widest hover:opacity-80 transition">Подтвердить заказ</button>
+                    <p class="text-[10px] text-gray-400 text-center">Нажимая кнопку, вы соглашаетесь с условиями</p>
+                </div>
+            </form>
+        </section>
+
+        <!-- SUCCESS -->
+        <section id="tab-success" class="tab-content hidden max-w-2xl mx-auto px-4 py-20 text-center">
+            <div class="w-20 h-20 rounded-full bg-green-100 dark:bg-green-950/40 flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-check text-3xl text-green-600 dark:text-green-400"></i>
+            </div>
+            <h1 class="text-3xl font-extrabold uppercase tracking-tight mb-3">Спасибо за заказ!</h1>
+            <p class="text-sm text-gray-500 mb-2">Номер заказа: <span id="success-order-id" class="font-bold text-black dark:text-white">—</span></p>
+            <p class="text-sm text-gray-500 mb-8">Мы отправили подтверждение на вашу почту. Ожидайте доставку в ближайшие дни.</p>
+            <div class="flex flex-wrap gap-3 justify-center">
+                <a href="#/catalog" onclick="switchTab('catalog'); return false;" class="bg-black text-white dark:bg-white dark:text-black px-6 py-3 text-xs font-bold uppercase tracking-widest rounded">Продолжить покупки</a>
+                <button onclick="handleAccountClick()" class="border border-black dark:border-white px-6 py-3 text-xs font-bold uppercase tracking-widest rounded">Мои заказы</button>
+            </div>
+        </section>
+
+        <!-- COLLECTIONS -->
+        <section id="tab-collections" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-widest font-bold text-gray-400">Эксклюзив</span>
+                <h1 class="text-3xl font-extrabold uppercase tracking-tight mt-1">Тренды и Коллекции</h1>
+                <p class="text-xs text-gray-500 mt-2">Капсульные подборки джинсов и нижней одежды.</p>
+            </div>
+            <div class="space-y-16">
+                <div class="relative rounded-2xl overflow-hidden bg-gradient-to-br from-indigo-900 via-blue-800 to-gray-900 text-white min-h-[350px] flex items-center p-8 sm:p-12">
+                    <div class="relative z-10 max-w-md">
+                        <span class="bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded">HOT 2026</span>
+                        <h2 class="text-3xl font-bold uppercase mt-3 mb-2">Деним Новинки</h2>
+                        <p class="text-xs text-gray-200 mb-6">Прямые, зауженные и оверсайз-джинсы из плотного денима.</p>
+                        <button onclick="filterByCollection('new')" class="bg-white text-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition">Смотреть коллекцию</button>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden bg-gradient-to-br from-rose-900 via-pink-800 to-gray-900 text-white min-h-[350px] flex items-center p-8 sm:p-12">
+                    <div class="relative z-10 max-w-md">
+                        <span class="bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded">СКИДКИ ДО 50%</span>
+                        <h2 class="text-3xl font-bold uppercase mt-3 mb-2">Распродажа Сезона</h2>
+                        <p class="text-xs text-gray-200 mb-6">Базовые слои и джинсы по лучшим ценам.</p>
+                        <button onclick="filterByCollection('sale')" class="bg-white text-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition">Перейти к скидкам</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="tab-about" class="tab-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-widest font-bold text-gray-400">Философия бренда</span>
+                <h1 class="text-3xl font-extrabold uppercase tracking-tight mt-1">О нас — URBAN THREADS</h1>
+            </div>
+            <div class="space-y-8 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p class="text-base text-gray-800 dark:text-gray-100 font-medium">URBAN THREADS — концептуальный бренд, сфокусированный на дениме и комфортной нижней одежде для современного города.</p>
+                <h2 class="text-lg font-bold text-black dark:text-white uppercase tracking-wide">Наш подход</h2>
+                <p>Мы верим, что джинсы должны быть прочными, а нижняя одежда — мягкой и незаметной. Все коллекции разрабатываются с учётом актуальных трендов, но сохраняют вневременной характер.</p>
+                <p>Каждая деталь — от выбора плотного денима и натурального хлопка до качества швов — проходит строгий контроль качества на нашем производстве.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 text-center"><div class="text-2xl font-extrabold">12 oz</div><div class="text-[10px] uppercase tracking-wider text-gray-500 mt-1">Плотность денима</div></div>
+                    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 text-center"><div class="text-2xl font-extrabold">100%</div><div class="text-[10px] uppercase tracking-wider text-gray-500 mt-1">Натуральный хлопок</div></div>
+                    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5 text-center"><div class="text-2xl font-extrabold">14</div><div class="text-[10px] uppercase tracking-wider text-gray-500 mt-1">Дней на возврат</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTS -->
+        <section id="tab-contacts" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-widest font-bold text-gray-400">Свяжитесь с нами</span>
+                <h1 class="text-3xl font-extrabold uppercase tracking-tight mt-1">Контакты & Флагманский Магазин</h1>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4"><i class="fa-solid fa-location-dot mt-1 text-gray-500"></i><div><h4 class="font-bold text-sm">Адрес шоурума:</h4><p class="text-xs text-gray-500">г. Москва, ул. Петровка, д. 15, стр. 1</p></div></div>
+                        <div class="flex items-start space-x-4"><i class="fa-solid fa-phone mt-1 text-gray-500"></i><div><h4 class="font-bold text-sm">Телефон поддержки:</h4><p class="text-xs text-gray-500">+7 (800) 555-35-35 (10:00–22:00)</p></div></div>
+                        <div class="flex items-start space-x-4"><i class="fa-solid fa-envelope mt-1 text-gray-500"></i><div><h4 class="font-bold text-sm">Email:</h4><p class="text-xs text-gray-500">support@urbanthreads.ru</p></div></div>
+                    </div>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+                        <h4 class="font-bold text-sm uppercase tracking-wide">Написать нам</h4>
+                        <div><input type="text" required placeholder="Ваше имя" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none"></div>
+                        <div><input type="email" required placeholder="Ваш Email" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none"></div>
+                        <div><textarea required rows="4" placeholder="Сообщение" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none"></textarea></div>
+                        <button type="submit" class="w-full bg-black text-white dark:bg-white dark:text-black py-3 text-xs font-bold uppercase tracking-widest hover:opacity-80 transition">Отправить сообщение</button>
+                    </form>
+                </div>
+                <div class="h-96 md:h-full bg-gradient-to-br from-gray-300 via-gray-200 to-gray-400 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 rounded-xl overflow-hidden relative flex items-center justify-center text-center p-6">
+                    <div class="relative z-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur p-6 rounded-lg max-w-sm">
+                        <i class="fa-solid fa-store text-2xl mb-2 text-black dark:text-white"></i>
+                        <h4 class="font-bold text-sm uppercase">Ждем вас в гости</h4>
+                        <p class="text-xs text-gray-500 mt-1">Примерка джинсов и базовых слоёв, кофе и персональный стилист по предварительной записи.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 404 -->
+        <section id="tab-404" class="tab-content hidden max-w-2xl mx-auto px-4 py-24 text-center">
+            <div class="text-7xl font-black tracking-tighter mb-4">404</div>
+            <h1 class="text-2xl font-extrabold uppercase tracking-tight mb-3">Страница не найдена</h1>
+            <p class="text-sm text-gray-500 mb-8">Возможно, товар был удалён или ссылка устарела.</p>
+            <a href="#/catalog" onclick="switchTab('catalog'); return false;" class="inline-block bg-black text-white dark:bg-white dark:text-black px-6 py-3 text-xs font-bold uppercase tracking-widest rounded">В каталог</a>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 transition-colors mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-4"><span class="text-xl font-black tracking-tighter uppercase dark:text-white">URBAN THREADS</span><p class="text-xs text-gray-500 dark:text-gray-400">Джинсы и нижняя одежда для жизни в ритме большого города.</p></div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Покупателям</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#/catalog" onclick="switchTab('catalog'); return false;" class="hover:underline">Каталог</a></li>
+                        <li><a href="#/contacts" onclick="switchTab('contacts'); return false;" class="hover:underline">Оплата и доставка</a></li>
+                        <li><a href="#/contacts" onclick="switchTab('contacts'); return false;" class="hover:underline">Возврат и обмен</a></li>
+                        <li><a href="#/about" onclick="switchTab('about'); return false;" class="hover:underline">Таблица размеров</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Компания</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#/about" onclick="switchTab('about'); return false;" class="hover:underline">О бренде</a></li>
+                        <li><a href="#/contacts" onclick="switchTab('contacts'); return false;" class="hover:underline">Контакты</a></li>
+                        <li><a href="#/about" onclick="switchTab('about'); return false;" class="hover:underline">Устойчивое развитие</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Рассылка</h4>
+                    <p class="text-xs text-gray-500 mb-3">Подпишитесь и получите скидку 10% на первый заказ.</p>
+                    <form onsubmit="event.preventDefault(); subscribeNewsletter();" class="flex">
+                        <input type="email" required placeholder="Email" class="bg-gray-100 dark:bg-gray-800 text-xs px-3 py-2 rounded-l w-full focus:outline-none">
+                        <button type="submit" class="bg-black text-white dark:bg-white dark:text-black px-4 py-2 text-xs font-bold uppercase rounded-r">ОК</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-800 mt-12 pt-6 text-center text-[11px] text-gray-400">© 2026 URBAN THREADS. Все права защищены.</div>
+        </div>
+    </footer>
+
+    <!-- MODALS & DRAWERS -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col md:flex-row">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:text-black dark:hover:text-white" aria-label="Закрыть">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="md:w-1/2 h-64 md:h-auto bg-gradient-to-br from-indigo-900 via-blue-800 to-gray-900 flex items-center justify-center text-white/30"><i class="fa-solid fa-shirt text-7xl"></i></div>
+            <div class="md:w-1/2 p-6 md:p-8 overflow-y-auto flex flex-col justify-between">
+                <div>
+                    <span id="modal-category" class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Категория</span>
+                    <h2 id="modal-title" class="text-2xl font-bold uppercase tracking-tight mt-1">Название товара</h2>
+                    <div class="text-xl font-extrabold mt-3" id="modal-price">0 ₽</div>
+                    <p id="modal-desc" class="text-xs text-gray-500 dark:text-gray-400 mt-4 leading-relaxed">Описание товара...</p>
+                    <div class="mt-6"><label class="text-xs font-bold uppercase tracking-wider block mb-2">Цвет</label><div class="flex space-x-2" id="modal-colors"></div></div>
+                    <div class="mt-6"><label class="text-xs font-bold uppercase tracking-wider block mb-2">Выберите размер</label><div class="flex flex-wrap gap-2" id="modal-sizes"></div></div>
+                </div>
+                <div class="mt-8 space-y-3">
+                    <button id="modal-add-cart-btn" class="w-full bg-black text-white dark:bg-white dark:text-black py-3 text-xs font-bold uppercase tracking-widest hover:opacity-80 transition">Добавить в корзину</button>
+                    <a id="modal-details-link" href="#" onclick="closeProductModal(); return true;" class="block text-center w-full border border-black dark:border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition">Подробнее о товаре</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white dark:bg-gray-900 shadow-2xl flex flex-col">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
+                <h3 id="cart-title" class="text-lg font-bold uppercase tracking-tight">Корзина</h3>
+                <button onclick="toggleCartDrawer()" class="text-gray-500 hover:text-black dark:hover:text-white" aria-label="Закрыть корзину"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4"></div>
+            <div class="p-6 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 space-y-4">
+                <div class="flex space-x-2">
+                    <input type="text" id="promo-input" placeholder="Промокод (URBAN10)" class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-xs px-3 py-2 rounded flex-grow uppercase">
+                    <button onclick="applyPromoCode()" class="bg-gray-200 dark:bg-gray-700 px-4 py-2 text-xs font-bold uppercase rounded">Применить</button>
+                </div>
+                <div class="space-y-1 text-xs">
+                    <div class="flex justify-between text-gray-500"><span>Подытог:</span><span id="cart-subtotal">0 ₽</span></div>
+                    <div class="flex justify-between text-gray-500"><span>Скидка:</span><span id="cart-discount" class="text-green-600 font-medium">0 ₽</span></div>
+                    <div class="flex justify-between text-base font-extrabold text-black dark:text-white pt-2 border-t border-gray-200 dark:border-gray-800"><span>Итого:</span><span id="cart-total">0 ₽</span></div>
+                </div>
+                <button onclick="goToCheckout()" class="w-full bg-black text-white dark:bg-white dark:text-black py-4 text-xs font-bold uppercase tracking-widest hover:opacity-80 transition">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="fav-modal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex justify-center items-center p-4" role="dialog" aria-modal="true" aria-labelledby="fav-title">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="fav-title" class="text-lg font-bold uppercase tracking-tight">Избранные товары</h3>
+                <button onclick="toggleFavoritesModal()" class="text-gray-500 hover:text-black dark:hover:text-white" aria-label="Закрыть избранное"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div id="fav-items-container" class="max-h-96 overflow-y-auto space-y-4"></div>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black dark:hover:text-white" aria-label="Закрыть"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h3 id="auth-title" class="text-xl font-extrabold uppercase tracking-tight mb-1">Личный кабинет</h3>
+            <p class="text-xs text-gray-500 mb-6">Войдите или создайте аккаунт, чтобы отслеживать заказы и избранное.</p>
+            <div class="flex border-b border-gray-200 dark:border-gray-800 mb-6">
+                <button id="auth-tab-login" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-xs font-bold uppercase tracking-widest border-b-2 border-black dark:border-white text-black dark:text-white transition">Вход</button>
+                <button id="auth-tab-register" onclick="switchAuthTab('register')" class="flex-1 pb-3 text-xs font-bold uppercase tracking-widest border-b-2 border-transparent text-gray-400 transition">Регистрация</button>
+            </div>
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-3">
+                <input type="email" id="login-email" required placeholder="Email" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="email">
+                <input type="password" id="login-password" required placeholder="Пароль" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="current-password">
+                <button type="submit" class="w-full bg-black text-white dark:bg-white dark:text-black py-3 text-xs font-bold uppercase tracking-widest hover:opacity-80 transition">Войти</button>
+                <p id="login-error" class="hidden text-xs text-red-500 text-center">Неверный email или пароль</p>
+            </form>
+            <form id="register-form" onsubmit="handleRegister(event)" class="space-y-3 hidden">
+                <input type="text" id="reg-name" required placeholder="Ваше имя" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="name">
+                <input type="email" id="reg-email" required placeholder="Email" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="email">
+                <input type="password" id="reg-password" required minlength="4" placeholder="Пароль (мин. 4 символа)" class="w-full bg-gray-100 dark:bg-gray-800 rounded px-4 py-2.5 text-xs focus:outline-none" autocomplete="new-password">
+                <button type="submit" class="w-full bg-black text-white dark:bg-white dark:text-black py-3 text-xs font-bold uppercase tracking-widest hover:opacity-80 transition">Создать аккаунт</button>
+                <p id="reg-error" class="hidden text-xs text-red-500 text-center">Пользователь с таким email уже существует</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="account-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="acc-name">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAccountModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black dark:hover:text-white" aria-label="Закрыть"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="flex items-center space-x-4 mb-6">
+                <div id="acc-avatar-large" class="w-14 h-14 rounded-full bg-black text-white dark:bg-white dark:text-black flex items-center justify-center text-xl font-extrabold uppercase">U</div>
+                <div><h3 id="acc-name" class="text-lg font-extrabold uppercase tracking-tight">Пользователь</h3><p id="acc-email" class="text-xs text-gray-500">email@example.com</p></div>
+            </div>
+            <div class="grid grid-cols-3 gap-3 mb-6 text-center">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg py-3"><div id="acc-orders-count" class="text-lg font-extrabold">0</div><div class="text-[10px] uppercase tracking-wider text-gray-500">Заказов</div></div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg py-3"><div id="acc-fav-count" class="text-lg font-extrabold">0</div><div class="text-[10px] uppercase tracking-wider text-gray-500">В избранном</div></div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg py-3"><div id="acc-total-spent" class="text-lg font-extrabold">0 ₽</div><div class="text-[10px] uppercase tracking-wider text-gray-500">Потрачено</div></div>
+            </div>
+            <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">История заказов</h4>
+            <div id="orders-list" class="space-y-3 mb-6"></div>
+            <div class="space-y-2">
+                <button onclick="closeAccountModal(); toggleFavoritesModal()" class="w-full border border-gray-300 dark:border-gray-700 py-3 text-xs font-bold uppercase tracking-widest rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"><i class="fa-regular fa-heart mr-2"></i> Моё избранное</button>
+                <button onclick="logout()" class="w-full border border-red-300 text-red-600 py-3 text-xs font-bold uppercase tracking-widest rounded hover:bg-red-50 dark:hover:bg-red-950/30 transition"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Выйти из аккаунта</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-black text-white dark:bg-white dark:text-black px-5 py-3 rounded-lg shadow-xl flex items-center space-x-3 text-xs font-semibold" role="status" aria-live="polite">
+        <i class="fa-solid fa-circle-check text-green-400 dark:text-green-600 text-base"></i>
+        <span id="toast-msg">Готово</span>
+    </div>
+
+    <script>
+        // ===== PRODUCTS =====
+        const products = [
+            { id: 1, name: "Джинсы прямые Classic Denim", category: "Джинсы", price: 4900, oldPrice: 6500, isBestseller: true, isNew: true, sizes: ["S","M","L","XL"], colors: ["#1e3a5f","#111827","#6B7280"], description: "Прямые джинсы из плотного хлопкового денима 12 oz. Универсальная посадка на каждый день." },
+            { id: 2, name: "Джинсы с завышенной посадкой", category: "Джинсы", price: 5900, oldPrice: null, isBestseller: true, isNew: false, sizes: ["XS","S","M","L"], colors: ["#1e3a5f","#111827"], description: "Модель с высокой посадкой и слегка зауженным кроем. Подчёркивает талию и вытягивает силуэт." },
+            { id: 3, name: "Джинсы-оверсайз Wide Leg", category: "Джинсы", price: 6200, oldPrice: 7500, isBestseller: true, isNew: true, sizes: ["S","M","L","XL"], colors: ["#3b5a7a","#111827","#d1d5db"], description: "Свободные джинсы широкого кроя из мягкого денима. Комфорт и актуальный силуэт." },
+            { id: 4, name: "Джинсы зауженные Slim Fit", category: "Джинсы", price: 4500, oldPrice: null, isBestseller: false, isNew: false, sizes: ["S","M","L"], colors: ["#111827","#1e3a5f"], description: "Зауженные джинсы с эластаном для комфортной посадки. Классика на каждый день." },
+            { id: 5, name: "Джинсы рваные с потёртостями", category: "Джинсы", price: 5600, oldPrice: 6900, isBestseller: false, isNew: true, sizes: ["S","M","L","XL"], colors: ["#3b5a7a","#111827"], description: "Джинсы с декоративными потёртостями и рваными элементами. Городской стиль." },
+            { id: 6, name: "Футболка-майка базовая", category: "Нижняя одежда", price: 1200, oldPrice: null, isBestseller: true, isNew: false, sizes: ["XS","S","M","L","XL"], colors: ["#ffffff","#111827","#9CA3AF"], description: "Базовая майка из 100% хлопка. Мягкая, дышащая, идеальна как первый слой." },
+            { id: 7, name: "Термобельё комплект", category: "Нижняя одежда", price: 3400, oldPrice: 4200, isBestseller: true, isNew: true, sizes: ["S","M","L","XL"], colors: ["#111827","#6B7280"], description: "Комплект термобелья из эластичного хлопка с добавлением эластана. Сохраняет тепло." },
+            { id: 8, name: "Боксеры хлопковые (3 шт.)", category: "Нижняя одежда", price: 1800, oldPrice: null, isBestseller: false, isNew: false, sizes: ["S","M","L","XL"], colors: ["#ffffff","#111827","#6B7280"], description: "Набор из трёх боксеров из мягкого хлопка. Удобный крой и дышащие материалы." },
+            { id: 9, name: "Лонгслив базовый", category: "Нижняя одежда", price: 2100, oldPrice: 2600, isBestseller: false, isNew: true, sizes: ["S","M","L","XL"], colors: ["#ffffff","#111827"], description: "Тонкий базовый лонгслив из хлопка. Носится под свитера и рубашки." },
+            { id: 10, name: "Комплект нижнего белья", category: "Нижняя одежда", price: 2600, oldPrice: null, isBestseller: false, isNew: false, sizes: ["XS","S","M","L"], colors: ["#111827","#d1d5db"], description: "Комплект из хлопкового трикотажа: топ и слипы. Комфорт на каждый день." }
+        ];
+
+        // ===== STATE =====
+        let state = {
+            cart: JSON.parse(localStorage.getItem('ut_cart') || '[]'),
+            favorites: JSON.parse(localStorage.getItem('ut_favorites') || '[]'),
+            selectedSizes: [],
+            discountPercent: 0,
+            activeTab: 'home',
+            selectedModalSize: null,
+            selectedModalProduct: null,
+            currentProductId: null,
+            searchQuery: ''
+        };
+
+        let currentUser = null;
+        let users = JSON.parse(localStorage.getItem('ut_users') || '{}');
+
+        // ===== PERSISTENCE =====
+        function persistCart() { localStorage.setItem('ut_cart', JSON.stringify(state.cart)); }
+        function persistFavorites() { localStorage.setItem('ut_favorites', JSON.stringify(state.favorites)); }
+        function persistUsers() {
+            localStorage.setItem('ut_users', JSON.stringify(users));
+            localStorage.setItem('ut_current_user', currentUser ? currentUser.email : '');
+        }
+        function restoreSession() {
+            const email = localStorage.getItem('ut_current_user');
+            if (email && users[email]) currentUser = users[email];
+            const theme = localStorage.getItem('ut_theme');
+            if (theme === 'dark') document.documentElement.classList.add('dark');
+        }
+
+        // ===== ROUTER =====
+        const routes = {
+            '': 'home', '/': 'home', '/catalog': 'catalog', '/collections': 'collections',
+            '/about': 'about', '/contacts': 'contacts', '/checkout': 'checkout', '/success': 'success'
+        };
+
+        function router() {
+            const hash = location.hash.replace(/^#/, '') || '/';
+            const [path, query] = hash.split('?');
+            const params = new URLSearchParams(query || '');
+
+            // product detail
+            if (path.startsWith('/product/')) {
+                const id = parseInt(path.split('/')[2], 10);
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    renderProductPage(product);
+                    showTab('product');
+                    return;
+                } else {
+                    showTab('404');
+                    return;
+                }
+            }
+
+            const tab = routes[path] || '404';
+            showTab(tab);
+
+            if (tab === 'catalog') {
+                if (params.has('cat')) filterByCategory(params.get('cat'), true);
+                if (params.has('sort')) { document.getElementById('sort-select').value = params.get('sort'); applyFilters(); }
+            }
+            if (tab === 'checkout') renderCheckout();
+        }
+
+        function showTab(tabId) {
+            state.activeTab = tabId;
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById(`tab-${tabId}`);
+            if (target) target.classList.remove('hidden');
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const isActive = link.getAttribute('data-tab') === tabId;
+                link.classList.toggle('text-black', isActive);
+                link.classList.toggle('dark:text-white', isActive);
+                link.classList.toggle('border-black', isActive);
+                link.classList.toggle('dark:border-white', isActive);
+                link.classList.toggle('text-gray-500', !isActive);
+                link.classList.toggle('dark:text-gray-400', !isActive);
+                link.classList.toggle('border-transparent', !isActive);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchTab(tabId) {
+            const map = { home: '/', catalog: '/catalog', collections: '/collections', about: '/about', contacts: '/contacts', checkout: '/checkout', success: '/success' };
+            if (map[tabId]) { location.hash = '#' + map[tabId]; }
+        }
+
+        window.addEventListener('hashchange', router);
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', () => {
+            restoreSession();
+            renderBestsellers();
+            renderCatalog(products);
+            updateCartUI();
+            updateFavUI();
+            updateAccountUI();
+            router();
+            bindGlobalEvents();
+        });
+
+        // ===== PRODUCT CARDS =====
+        function createProductCardHTML(product) {
+            const isFav = state.favorites.includes(product.id);
+            return `
+                <div class="group relative flex flex-col justify-between bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 hover:shadow-lg transition duration-300">
+                    <a href="#/product/${product.id}" class="relative aspect-[3/4] placeholder-card overflow-hidden flex items-center justify-center text-white/20" aria-label="${product.name}">
+                        <i class="fa-solid fa-shirt text-6xl opacity-40"></i>
+                        ${product.oldPrice ? `<span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Скидка</span>` : ''}
+                        ${product.isNew ? `<span class="absolute bottom-3 left-3 bg-black text-white dark:bg-white dark:text-black text-[10px] font-bold px-2 py-0.5 rounded uppercase">New</span>` : ''}
+                    </a>
+                    <button onclick="event.preventDefault(); toggleFavorite(${product.id})" class="absolute top-3 right-3 z-20 p-2 rounded-full bg-white/80 dark:bg-gray-900/80 backdrop-blur text-gray-700 dark:text-gray-200 hover:text-red-500 transition" aria-label="В избранное" aria-pressed="${isFav}">
+                        <i class="${isFav ? 'fa-solid fa-heart text-red-500' : 'fa-regular fa-heart'}"></i>
+                    </button>
+                    <div class="p-4 flex flex-col flex-grow justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">${product.category}</span>
+                            <a href="#/product/${product.id}" class="block text-xs sm:text-sm font-semibold text-gray-900 dark:text-gray-100 mt-1 hover:underline line-clamp-1">${product.name}</a>
+                        </div>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div>
+                                <span class="text-sm font-extrabold text-black dark:text-white">${product.price.toLocaleString()} ₽</span>
+                                ${product.oldPrice ? `<span class="text-xs text-gray-400 line-through ml-1">${product.oldPrice.toLocaleString()} ₽</span>` : ''}
+                            </div>
+                            <button onclick="addToCart(${product.id}, '${product.sizes[0]}')" class="p-2 bg-gray-100 dark:bg-gray-800 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black rounded-lg transition text-xs" aria-label="Добавить в корзину"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBestsellers() {
+            const bestsellers = products.filter(p => p.isBestseller);
+            document.getElementById('home-bestsellers-grid').innerHTML = bestsellers.map(p => createProductCardHTML(p)).join('');
+        }
+
+        function renderCatalog(items) {
+            const container = document.getElementById('catalog-grid');
+            const emptyState = document.getElementById('catalog-empty');
+            document.getElementById('catalog-count').innerText = items.length;
+            if (items.length === 0) { container.innerHTML = ''; emptyState.classList.remove('hidden'); }
+            else { emptyState.classList.add('hidden'); container.innerHTML = items.map(p => createProductCardHTML(p)).join(''); }
+        }
+
+        // ===== PRODUCT PAGE =====
+        function renderProductPage(product) {
+            state.currentProductId = product.id;
+            state.selectedModalProduct = product;
+            state.selectedModalSize = product.sizes[0];
+            document.getElementById('product-breadcrumb').innerText = product.name;
+            document.getElementById('product-category').innerText = product.category;
+            document.getElementById('product-title').innerText = product.name;
+            document.getElementById('product-price').innerText = `${product.price.toLocaleString()} ₽`;
+            document.getElementById('product-desc').innerText = product.description;
+            document.getElementById('product-colors').innerHTML = product.colors.map(c => `<div class="w-6 h-6 rounded-full border border-gray-300" style="background-color:${c}"></div>`).join('');
+            document.getElementById('product-sizes').innerHTML = product.sizes.map(size => `
+                <button onclick="selectProductSize('${size}', this)" class="product-size-btn px-4 py-2 border ${size === state.selectedModalSize ? 'border-black dark:border-white font-bold bg-gray-100 dark:bg-gray-800' : 'border-gray-200 dark:border-gray-700'} text-xs rounded">${size}</button>
+            `).join('');
+            document.getElementById('product-add-cart-btn').onclick = () => { addToCart(product.id, state.selectedModalSize); };
+        }
+
+        function selectProductSize(size, btn) {
+            state.selectedModalSize = size;
+            document.querySelectorAll('.product-size-btn').forEach(b => b.classList.remove('border-black','dark:border-white','font-bold','bg-gray-100','dark:bg-gray-800'));
+            btn.classList.add('border-black','dark:border-white','font-bold','bg-gray-100','dark:bg-gray-800');
+        }
+
+        // ===== FILTERS =====
+        function applyFilters() {
+            let filtered = [...products];
+            if (state.searchQuery) {
+                const q = state.searchQuery.toLowerCase();
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+            }
+            const selectedCategories = Array.from(document.querySelectorAll('.filter-category:checked')).map(cb => cb.value);
+            if (!selectedCategories.includes('Все') && selectedCategories.length > 0) filtered = filtered.filter(p => selectedCategories.includes(p.category));
+            const maxPrice = parseInt(document.getElementById('price-range').value, 10);
+            filtered = filtered.filter(p => p.price <= maxPrice);
+            if (state.selectedSizes.length > 0) filtered = filtered.filter(p => p.sizes.some(s => state.selectedSizes.includes(s)));
+            const sortBy = document.getElementById('sort-select').value;
+            if (sortBy === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+            else if (sortBy === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+            else if (sortBy === 'newest') filtered.sort((a,b) => (b.isNew?1:0) - (a.isNew?1:0));
+            renderCatalog(filtered);
+        }
+
+        function filterByCategory(name, silent) {
+            if (!silent) location.hash = '#/catalog?cat=' + encodeURIComponent(name);
+            document.querySelectorAll('.filter-category').forEach(cb => { cb.checked = (cb.value === name); });
+            applyFilters();
+        }
+
+        function filterByCollection(type) {
+            resetFilters();
+            if (type === 'sale') { renderCatalog(products.filter(p => p.oldPrice !== null)); return; }
+            if (type === 'new') document.getElementById('sort-select').value = 'newest';
+            applyFilters();
+        }
+
+        function toggleSizeFilter(btn, size) {
+            btn.classList.toggle('bg-black'); btn.classList.toggle('text-white');
+            btn.classList.toggle('dark:bg-white'); btn.classList.toggle('dark:text-black');
+            if (state.selectedSizes.includes(size)) state.selectedSizes = state.selectedSizes.filter(s => s !== size);
+            else state.selectedSizes.push(size);
+            applyFilters();
+        }
+
+        function updatePriceLabel(val) { document.getElementById('price-range-val').innerText = `${parseInt(val,10).toLocaleString()} ₽`; }
+
+        function resetFilters() {
+            document.querySelectorAll('.filter-category').forEach(cb => { cb.checked = (cb.value === 'Все'); });
+            document.getElementById('price-range').value = 15000; updatePriceLabel(15000);
+            state.selectedSizes = [];
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('bg-black','text-white','dark:bg-white','dark:text-black'));
+            document.getElementById('sort-select').value = 'popular';
+            state.searchQuery = ''; document.getElementById('search-input').value = ''; document.getElementById('mobile-search-input').value = '';
+            applyFilters();
+        }
+
+        function handleSearch(event) {
+            state.searchQuery = event.target.value.trim();
+            if (state.activeTab !== 'catalog') switchTab('catalog');
+            applyFilters();
+            renderSearchSuggestions(state.searchQuery);
+        }
+
+        function showSearchSuggestions() {
+            renderSearchSuggestions(document.getElementById('search-input').value.trim());
+        }
+        function renderSearchSuggestions(q) {
+            const box = document.getElementById('search-suggestions');
+            if (!q) { box.classList.add('hidden'); return; }
+            const matches = products.filter(p => p.name.toLowerCase().includes(q.toLowerCase())).slice(0, 5);
+            if (matches.length === 0) { box.innerHTML = `<div class="p-3 text-xs text-gray-500">Ничего не найдено</div>`; }
+            else {
+                box.innerHTML = matches.map(p => `
+                    <a href="#/product/${p.id}" class="flex items-center justify-between px-3 py-2 text-xs hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <span class="line-clamp-1">${p.name}</span>
+                        <span class="text-gray-500 font-semibold">${p.price.toLocaleString()} ₽</span>
+                    </a>
+                `).join('');
+            }
+            box.classList.remove('hidden');
+        }
+        document.addEventListener('click', (e) => {
+            const box = document.getElementById('search-suggestions');
+            if (box && !box.contains(e.target) && e.target.id !== 'search-input') box.classList.add('hidden');
+        });
+
+        function toggleMobileFilters() {
+            const sidebar = document.getElementById('catalog-sidebar');
+            sidebar.classList.toggle('hidden'); sidebar.classList.toggle('block');
+            const btn = document.getElementById('mobile-filters-btn');
+            if (btn) btn.setAttribute('aria-expanded', !sidebar.classList.contains('hidden'));
+        }
+
+        // ===== PRODUCT MODAL =====
+        function openProductModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            state.selectedModalProduct = product;
+            state.selectedModalSize = product.sizes[0];
+            document.getElementById('modal-category').innerText = product.category;
+            document.getElementById('modal-title').innerText = product.name;
+            document.getElementById('modal-price').innerText = `${product.price.toLocaleString()} ₽`;
+            document.getElementById('modal-desc').innerText = product.description;
+            document.getElementById('modal-details-link').href = `#/product/${product.id}`;
+            document.getElementById('modal-sizes').innerHTML = product.sizes.map(size => `
+                <button onclick="selectModalSize('${size}', this)" class="modal-size-btn px-4 py-2 border ${size === state.selectedModalSize ? 'border-black dark:border-white font-bold bg-gray-100 dark:bg-gray-800' : 'border-gray-200 dark:border-gray-700'} text-xs rounded">${size}</button>
+            `).join('');
+            document.getElementById('modal-colors').innerHTML = product.colors.map(c => `<div class="w-6 h-6 rounded-full border border-gray-300" style="background-color:${c}"></div>`).join('');
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+        function closeProductModal() { document.getElementById('product-modal').classList.add('hidden'); }
+        function selectModalSize(size, btn) {
+            state.selectedModalSize = size;
+            document.querySelectorAll('.modal-size-btn').forEach(b => b.classList.remove('border-black','dark:border-white','font-bold','bg-gray-100','dark:bg-gray-800'));
+            btn.classList.add('border-black','dark:border-white','font-bold','bg-gray-100','dark:bg-gray-800');
+        }
+
+        // ===== CART =====
+        function addToCart(productId, size) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const chosenSize = size || product.sizes[0];
+            const item = state.cart.find(i => i.id === productId && i.size === chosenSize);
+            if (item) item.quantity += 1;
+            else state.cart.push({ id: product.id, name: product.name, price: product.price, size: chosenSize, quantity: 1 });
+            persistCart(); updateCartUI(); showToast("Товар добавлен в корзину");
+        }
+
+        function updateQuantity(id, size, delta) {
+            const item = state.cart.find(i => i.id === id && i.size === size);
+            if (item) { item.quantity += delta; if (item.quantity <= 0) state.cart = state.cart.filter(i => !(i.id === id && i.size === size)); }
+            persistCart(); updateCartUI();
+        }
+
+        function cartTotals() {
+            const subtotal = state.cart.reduce((s,i) => s + i.price * i.quantity, 0);
+            const discount = Math.round(subtotal * (state.discountPercent / 100));
+            return { subtotal, discount, total: subtotal - discount };
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const totalCount = state.cart.reduce((s,i) => s + i.quantity, 0);
+            const { subtotal, discount, total } = cartTotals();
+            document.getElementById('cart-count').innerText = totalCount;
+            document.getElementById('cart-subtotal').innerText = `${subtotal.toLocaleString()} ₽`;
+            document.getElementById('cart-discount').innerText = `-${discount.toLocaleString()} ₽`;
+            document.getElementById('cart-total').innerText = `${total.toLocaleString()} ₽`;
+
+            if (state.cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-gray-400"><i class="fa-solid fa-bag-shopping text-4xl mb-3"></i><p class="text-xs">Ваша корзина пуста</p></div>`;
+            } else {
+                container.innerHTML = state.cart.map(item => `
+                    <div class="flex items-center space-x-4 bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                        <div class="w-16 h-16 rounded placeholder-card flex items-center justify-center text-white/20"><i class="fa-solid fa-shirt text-xl opacity-40"></i></div>
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold line-clamp-1">${item.name}</h4>
+                            <span class="text-[10px] text-gray-400">Размер: ${item.size}</span>
+                            <div class="text-xs font-extrabold mt-1">${(item.price * item.quantity).toLocaleString()} ₽</div>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded px-2 py-1">
+                            <button onclick="updateQuantity(${item.id}, '${item.size}', -1)" class="text-xs text-gray-500">−</button>
+                            <span class="text-xs font-bold px-1">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, '${item.size}', 1)" class="text-xs text-gray-500">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCartDrawer() { document.getElementById('cart-drawer').classList.toggle('hidden'); }
+
+        function applyPromoCode() {
+            const input = document.getElementById('promo-input').value.trim().toUpperCase();
+            if (input === 'URBAN10') { state.discountPercent = 10; showToast("Промокод на 10% применен!"); }
+            else { state.discountPercent = 0; showToast("Неверный промокод"); }
+            updateCartUI();
+        }
+
+        function goToCheckout() {
+            if (state.cart.length === 0) { showToast("Корзина пуста"); return; }
+            toggleCartDrawer();
+            location.hash = '#/checkout';
+        }
+
+        function renderCheckout() {
+            const items = document.getElementById('checkout-items');
+            const { subtotal, discount, total } = cartTotals();
+            document.getElementById('checkout-subtotal').innerText = `${subtotal.toLocaleString()} ₽`;
+            document.getElementById('checkout-discount').innerText = `-${discount.toLocaleString()} ₽`;
+            document.getElementById('checkout-total').innerText = `${total.toLocaleString()} ₽`;
+            document.getElementById('checkout-delivery').innerText = 'от 300 ₽';
+            items.innerHTML = state.cart.map(i => `
+                <div class="flex justify-between gap-2">
+                    <span class="line-clamp-1">${i.name} (${i.size}) ×${i.quantity}</span>
+                    <span class="font-bold whitespace-nowrap">${(i.price * i.quantity).toLocaleString()} ₽</span>
+                </div>
+            `).join('') || `<p class="text-gray-400">Корзина пуста</p>`;
+        }
+
+        function submitCheckout(e) {
+            e.preventDefault();
+            if (state.cart.length === 0) { showToast("Корзина пуста"); return; }
+            const { total } = cartTotals();
+            const orderId = 'UT-' + Date.now().toString().slice(-6);
+            const order = {
+                id: orderId,
+                date: new Date().toLocaleDateString('ru-RU'),
+                items: state.cart.map(i => ({ name: i.name, size: i.size, qty: i.quantity, price: i.price })),
+                total
+            };
+            if (currentUser) {
+                currentUser.orders = currentUser.orders || [];
+                currentUser.orders.unshift(order);
+                users[currentUser.email] = currentUser;
+                persistUsers();
+            }
+            state.cart = [];
+            state.discountPercent = 0;
+            document.getElementById('promo-input').value = '';
+            persistCart();
+            updateCartUI();
+            document.getElementById('success-order-id').innerText = orderId;
+            location.hash = '#/success';
+        }
+
+        // ===== FAVORITES =====
+        function toggleFavorite(id) {
+            if (state.favorites.includes(id)) { state.favorites = state.favorites.filter(f => f !== id); showToast("Удалено из избранного"); }
+            else { state.favorites.push(id); showToast("Добавлено в избранное"); }
+            persistFavorites(); updateFavUI(); renderBestsellers();
+            if (state.activeTab === 'catalog') applyFilters();
+            if (state.activeTab === 'product' && state.currentProductId) {
+                const p = products.find(x => x.id === state.currentProductId);
+                if (p) renderProductPage(p);
+            }
+        }
+
+        function updateFavUI() {
+            document.getElementById('fav-count').innerText = state.favorites.length;
+            const container = document.getElementById('fav-items-container');
+            const favProducts = products.filter(p => state.favorites.includes(p.id));
+            if (favProducts.length === 0) container.innerHTML = `<p class="text-center text-xs text-gray-400 py-8">Список избранного пуст</p>`;
+            else container.innerHTML = favProducts.map(item => `
+                <div class="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded placeholder-card flex items-center justify-center text-white/20"><i class="fa-solid fa-shirt text-sm opacity-40"></i></div>
+                        <div><a href="#/product/${item.id}" onclick="toggleFavoritesModal()" class="text-xs font-bold hover:underline">${item.name}</a><div class="text-xs font-semibold text-gray-500">${item.price.toLocaleString()} ₽</div></div>
+                    </div>
+                    <button onclick="addToCart(${item.id}, '${item.sizes[0]}')" class="text-xs bg-black text-white dark:bg-white dark:text-black px-3 py-1.5 rounded uppercase font-bold">В корзину</button>
+                </div>
+            `).join('');
+            if (currentUser) { const accFav = document.getElementById('acc-fav-count'); if (accFav) accFav.innerText = state.favorites.length; }
+        }
+
+        function toggleFavoritesModal() { document.getElementById('fav-modal').classList.toggle('hidden'); }
+
+        // ===== THEME =====
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('ut_theme', isDark ? 'dark' : 'light');
+        }
+
+        // ===== TOAST =====
+        let toastTimer;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-20','opacity-0');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.add('translate-y-20','opacity-0'), 3000);
+        }
+
+        // ===== FORMS =====
+        function handleContactSubmit(e) { e.preventDefault(); showToast("Сообщение успешно отправлено!"); e.target.reset(); }
+        function subscribeNewsletter() { showToast("Вы успешно подписались на рассылку!"); }
+        function buyOneClick() {
+            const p = state.selectedModalProduct;
+            if (!p) return;
+            addToCart(p.id, state.selectedModalSize);
+            closeProductModal();
+            showToast(currentUser ? "Заказ оформлен! Смотрите в личном кабинете." : "Товар добавлен. Войдите, чтобы отслеживать заказ.");
+        }
+
+        // ===== AUTH =====
+        function switchAuthTab(tab) {
+            const isLogin = tab === 'login';
+            document.getElementById('login-form').classList.toggle('hidden', !isLogin);
+            document.getElementById('register-form').classList.toggle('hidden', isLogin);
+            document.getElementById('login-error').classList.add('hidden');
+            document.getElementById('reg-error').classList.add('hidden');
+            const loginBtn = document.getElementById('auth-tab-login');
+            const regBtn = document.getElementById('auth-tab-register');
+            if (isLogin) {
+                loginBtn.classList.add('border-black','dark:border-white','text-black','dark:text-white');
+                loginBtn.classList.remove('border-transparent','text-gray-400');
+                regBtn.classList.remove('border-black','dark:border-white','text-black','dark:text-white');
+                regBtn.classList.add('border-transparent','text-gray-400');
+            } else {
+                regBtn.classList.add('border-black','dark:border-white','text-black','dark:text-white');
+                regBtn.classList.remove('border-transparent','text-gray-400');
+                loginBtn.classList.remove('border-black','dark:border-white','text-black','dark:text-white');
+                loginBtn.classList.add('border-transparent','text-gray-400');
+            }
+        }
+
+        function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); switchAuthTab('login'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+        function handleAccountClick() { currentUser ? openAccountModal() : openAuthModal(); }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim().toLowerCase();
+            const password = document.getElementById('reg-password').value;
+            if (users[email]) { document.getElementById('reg-error').classList.remove('hidden'); return; }
+            users[email] = { name, email, password, orders: [] };
+            currentUser = users[email];
+            persistUsers(); closeAuthModal(); updateAccountUI();
+            showToast(`Добро пожаловать, ${name}!`);
+            e.target.reset();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const password = document.getElementById('login-password').value;
+            if (!users[email] || users[email].password !== password) { document.getElementById('login-error').classList.remove('hidden'); return; }
+            currentUser = users[email];
+            persistUsers(); closeAuthModal(); updateAccountUI();
+            showToast(`С возвращением, ${currentUser.name}!`);
+            e.target.reset();
+        }
+
+        function logout() {
+            currentUser = null;
+            persistUsers(); updateAccountUI(); closeAccountModal();
+            showToast("Вы вышли из аккаунта");
+        }
+
+        function updateAccountUI() {
+            const icon = document.getElementById('account-icon');
+            const avatar = document.getElementById('account-avatar');
+            const btn = document.getElementById('account-btn');
+            if (currentUser) {
+                if (icon) icon.classList.add('hidden');
+                if (avatar) { avatar.classList.remove('hidden'); avatar.classList.add('flex'); avatar.innerText = currentUser.name.charAt(0).toUpperCase(); avatar.style.display = 'flex'; }
+                btn.setAttribute('aria-label', 'Личный кабинет: ' + currentUser.name);
+            } else {
+                if (avatar) { avatar.classList.add('hidden'); avatar.classList.remove('flex'); avatar.style.display = 'none'; }
+                if (icon) icon.classList.remove('hidden');
+                btn.setAttribute('aria-label', 'Войти в личный кабинет');
+            }
+            const mobileLabel = document.getElementById('mobile-account-label');
+            if (mobileLabel) mobileLabel.innerText = currentUser ? currentUser.name : 'Личный кабинет';
+        }
+
+        function openAccountModal() { if (!currentUser) return; renderAccountModal(); document.getElementById('account-modal').classList.remove('hidden'); }
+        function closeAccountModal() { document.getElementById('account-modal').classList.add('hidden'); }
+
+        function renderAccountModal() {
+            if (!currentUser) return;
+            document.getElementById('acc-name').innerText = currentUser.name;
+            document.getElementById('acc-email').innerText = currentUser.email;
+            const avatarLarge = document.getElementById('acc-avatar-large');
+            if (avatarLarge) avatarLarge.innerText = currentUser.name.charAt(0).toUpperCase();
+            const orders = currentUser.orders || [];
+            const totalSpent = orders.reduce((s,o) => s + o.total, 0);
+            document.getElementById('acc-orders-count').innerText = orders.length;
+            document.getElementById('acc-fav-count').innerText = state.favorites.length;
+            document.getElementById('acc-total-spent').innerText = totalSpent.toLocaleString() + ' ₽';
+            const list = document.getElementById('orders-list');
+            if (orders.length === 0) list.innerHTML = `<p class="text-xs text-gray-400 py-3 text-center">Пока нет оформленных заказов</p>`;
+            else list.innerHTML = orders.map(o => `
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+                    <div class="flex justify-between items-center mb-1"><span class="text-xs font-bold">Заказ ${o.id}</span><span class="text-[10px] text-gray-400">${o.date}</span></div>
+                    <div class="text-[11px] text-gray-500">${o.items.map(i => `${i.name} (${i.size}) ×${i.qty}`).join(', ')}</div>
+                    <div class="text-xs font-extrabold mt-1">${o.total.toLocaleString()} ₽</div>
+                </div>
+            `).join('');
+        }
+
+        function closeMobileMenu() { document.getElementById('mobile-menu').classList.add('hidden'); }
+
+        // ===== GLOBAL EVENTS =====
+        function bindGlobalEvents() {
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+            document.getElementById('modal-add-cart-btn').addEventListener('click', () => {
+                if (state.selectedModalProduct) { addToCart(state.selectedModalProduct.id, state.selectedModalSize); closeProductModal(); }
+            });
+            document.getElementById('product-modal').addEventListener('click', (e) => { if (e.target.id === 'product-modal') closeProductModal(); });
+            document.getElementById('fav-modal').addEventListener('click', (e) => { if (e.target.id === 'fav-modal') toggleFavoritesModal(); });
+            document.getElementById('cart-drawer').addEventListener('click', (e) => { if (e.target.id === 'cart-drawer') toggleCartDrawer(); });
+            document.getElementById('auth-modal').addEventListener('click', (e) => { if (e.target.id === 'auth-modal') closeAuthModal(); });
+            document.getElementById('account-modal').addEventListener('click', (e) => { if (e.target.id === 'account-modal') closeAccountModal(); });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeProductModal();
+                    if (!document.getElementById('fav-modal').classList.contains('hidden')) toggleFavoritesModal();
+                    if (!document.getElementById('cart-drawer').classList.contains('hidden')) toggleCartDrawer();
+                    if (!document.getElementById('auth-modal').classList.contains('hidden')) closeAuthModal();
+                    if (!document.getElementById('account-modal').classList.contains('hidden')) closeAccountModal();
+                    closeMobileMenu();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
